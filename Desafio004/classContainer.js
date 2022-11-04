@@ -80,8 +80,9 @@ class Contenedor {
             product.title=title;
             product.price=price;
             product.thumbnail=thumbnail;
-            await fs.promises.writeFile(this.path, JSON.stringify(products));
-            return product;
+            console.log(products,this.file)
+            await fs.promises.writeFile(this.file, JSON.stringify(products));
+            console.log("Se actualizo el producto")
         }catch(error){
             console.log("No se pudo actualizar el producto")
         }

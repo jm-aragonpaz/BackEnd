@@ -37,7 +37,7 @@ routerProducts.get('/:id', async(req,res)=>{
     if (!product){
         res.json({error: true, msj: "id no encontrado"})
     }else{
-        res.send({success: true, product: product});
+        res.json(product);
     }
 })
 
