@@ -3,29 +3,23 @@ const fs = require("fs")
 class Contenedor {
     constructor(File) {
         this.file = File;
+        
     }
 
     async save(product){
         try {
-            console.log(this.file)
-            product.id = this.id++
+            // product.id = this.id++
             const data = await fs.promises.readFile(this.file, 'utf-8')
-            console.log(data)
-            const items = JSON.parse(data);
-            let idProd=0
-            if (items.length > 0){
-                let products=[];
-                items.forEach(el => {
-                    products.push(el.id)
-                } )
-                idProd=Math.max(...products);
-            }
-            idProd++
-            const newProduct={...product,id:idProd};
-            const newItems=[...items, newProduct];
-            const newItemsStr=JSON.stringify(newItems)
-            await fs.promises.writeFile(this.file, newItemsStr)
-            return idProd;    
+            // console.log(data)
+            const dataParse = JSON.parse(data)
+            // console.log(dataParse);
+            const id = dataParse.length+1;
+            // console.log(product);
+            product.id=id
+            dataParse.push(product);
+            const dataStr=JSON.stringify(dataParse)
+            await fs.promises.writeFile(this.file, dataStr)
+            return id;    
         } catch (error) {
             console.log(error)
         }
@@ -38,7 +32,7 @@ class Contenedor {
         try {
             const data = await fs.promises.readFile(this.file,'utf-8');
             const items = JSON.parse(data);
-            const product = items.find(e=>e.id===id);
+            const product = items.find(e=>e.id==id);
             return product
         } catch (error) {
             console.log(error)
@@ -76,6 +70,20 @@ class Contenedor {
             await fs.promises.writeFile(this.file, productStr)
         } catch (error) {
             console.log(error)
+        }
+    }
+
+    async updateById(title,price,thumbnail,id){
+        try{
+            const products = await this.getAll();
+            const product = products.find((item)=> item.id ==id)
+            product.title=title;
+            product.price=price;
+            product.thumbnail=thumbnail;
+            await fs.promises.writeFile(this.path, JSON.stringify(products));
+            return product;
+        }catch(error){
+            console.log("No se pudo actualizar el producto")
         }
     }
 }
