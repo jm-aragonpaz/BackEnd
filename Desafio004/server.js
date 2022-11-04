@@ -23,7 +23,6 @@ app.get('/', (req,res)=>{
 routerProducts.get('/', async(req,res)=>{
     const products =await data.getAll()
     if(products){
-        // console.log(products)
         res.send(products);
     }else{
         res.send({success: false, product: "No hay productos"});
@@ -45,7 +44,6 @@ routerProducts.delete('/:id', async (req,res)=>{
     try{
     const {id}=req.params;
     data.deleteById(id);
-    // const products = await conten
     res.json({success: true,msj:"Producto borrado"})
     }catch(error){
         res.json({error:true, msj:"No se pudo borrar el Producto"})
@@ -57,8 +55,7 @@ routerProducts.post('/', async(req,res)=>{
     try{
         data.save(body);
         console.log(body);
-        res.send({success:true, msj: "Se guardo el producto correctamente"})
-        // res.send({error:true,msj: "No se pudo guardar correctamente el producto"});
+        res.send({success:true, msj: "Se guardo el producto correctamente",body})
     }catch(error){
         res.json({error:true,msj:"No se pudo guardar el producto"});
     }
@@ -84,5 +81,4 @@ app.post('/form', (req, res)=>{
     const body = req.body;
     data.save(body);
     res.send("gracias por compartir el producto")
-    // res.json({error: true, e:err})
 });

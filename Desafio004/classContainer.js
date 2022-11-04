@@ -19,7 +19,7 @@ class Contenedor {
             dataParse.push(product);
             const dataStr=JSON.stringify(dataParse)
             await fs.promises.writeFile(this.file, dataStr)
-            return id;    
+            return product;    
         } catch (error) {
             console.log(error)
         }
