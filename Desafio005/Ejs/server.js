@@ -1,25 +1,25 @@
 const express = require('express');
 const app = express();
-const { engine } = require("express-handlebars")
+const ejs = require('ejs');
 const Contenedeor = require('./classContainer.js');
 const data = new Contenedeor('./productos.txt');
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8084
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
 });
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
-app.engine('hbs',
-    engine({
-        extname: '.hbs',
-        defaultLayout: 'index.hbs',
-        layoutsDir: __dirname + '/views/layouts',
-        partialsDir: __dirname + '/views/partials',
-    })
-);
+// app.engine('hbs',
+//     engine({
+//         extname: '.hbs',
+//         defaultLayout: 'index.hbs',
+//         layoutsDir: __dirname + '/views/layouts',
+//         partialsDir: __dirname + '/views/partials',
+//     })
+// );
 
 
 app.get('/', (req, res) => {

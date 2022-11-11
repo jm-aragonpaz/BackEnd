@@ -1,0 +1,2 @@
+De los distintos motores de plantillas probados, me quedo con pug en principio porque vengo de python y me gusta el tema de la identación.
+De cualquier forma, handlebars tmb me resulta facil de seguir. Ejs tiene el tema de la forma de escribir que no me resulta muy legible.
