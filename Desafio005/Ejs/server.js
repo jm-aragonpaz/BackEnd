@@ -12,14 +12,6 @@ app.listen(port, () => {
 });
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
-// app.engine('hbs',
-//     engine({
-//         extname: '.hbs',
-//         defaultLayout: 'index.hbs',
-//         layoutsDir: __dirname + '/views/layouts',
-//         partialsDir: __dirname + '/views/partials',
-//     })
-// );
 
 
 app.get('/', (req, res) => {
@@ -55,31 +47,4 @@ app.get('/productos', async (req, res) => {
         res.json({ error: true, msj: "No se pudo cargar la lista de productos" })
     }
 });
-
-// res.render('productsList.hbs', { products: productsHC, productsExist: true });
-// app.get('/', (req, res) => {
-//     res.send('<h1>Desafío 4: API RESTful</h1>');
-// })
-
-// routerProducts.delete('/:id', async (req, res) => {
-//     try {
-//         const { id } = req.params;
-//         data.deleteById(id);
-//         res.json({ success: true, msj: "Producto borrado" })
-//     } catch (error) {
-//         res.json({ error: true, msj: "No se pudo borrar el Producto" })
-//     }
-// });
-
-// routerProducts.put('/:id', async (req, res) => {
-//     try {
-//         const { id } = req.params;
-//         const { title, price, thumbnail } = req.body;
-//         await data.updateById(title, price, thumbnail, id);
-//         res.json({ succes: true })
-
-//     } catch (error) {
-//         res.json({ error: true, msj: "error, no se pudo actualizar el producto" });
-//     }
-// });
 
