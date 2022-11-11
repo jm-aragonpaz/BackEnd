@@ -1,12 +1,12 @@
 {{> navbar}}
 <form
-    action="/products"
+    action="/productos"
     method="POST"
     class="d-flex justify-content-center align-items-center flex-column"
     style="height: 100vh"
 >
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Product name</label>
+        <label for="exampleInputEmail1" class="form-label">Nombre del producto</label>
         <input
             type="text"
             class="form-control"
@@ -16,7 +16,7 @@
         />
     </div>
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Product price</label>
+        <label for="exampleInputEmail1" class="form-label">Precio</label>
         <input
             type="number"
             class="form-control"
@@ -26,7 +26,7 @@
         />
     </div>
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Product img URL</label>
+        <label for="exampleInputEmail1" class="form-label">URL imagen</label>
         <input
             type="text"
             class="form-control"
@@ -36,9 +36,9 @@
         />
     </div>
     <button type="submit" class="btn btn-primary">
-        Upload product
+        Agregar producto
     </button>
-    <a href="/products" class="btn btn-dark mt-2">View products</a>
+    <a href="/productos" class="btn btn-secondary mt-2">Ver productos</a>
     
 </form>
 Footer

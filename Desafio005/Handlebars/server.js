@@ -11,7 +11,7 @@ app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
 });
 app.set('view engine', 'hbs');
-app.set('view', './views');
+app.set('views', __dirname + '/views');
 app.engine('hbs',
     engine({
         extname: '.hbs',
@@ -50,7 +50,7 @@ app.get('/productos', async (req, res) => {
     const listaProd = await data.getAll()
     if (listaProd) {
         console.log(listaProd)
-        res.render("server", { products: listaProd });
+        res.render("productsList", { productos: listaProd });
     } else {
         res.json({ error: true, msj: "No se pudo cargar la lista de productos" })
     }
