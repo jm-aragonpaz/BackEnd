@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+</head>
+
+<body>
+    <h1>Enter Product</h1>
+    <div>
+        <form action="/form" method="POST">
+            <input type="text" name="title" placeholder="Name" class='input' />
+            <input type="number" name="price" placeholder="Price" class='input' />
+            <input type="url" name="thumbnail" placeholder="Image" class='input' autocomplete='off' />
+            <button type="submit" class='button'>Add</button>
+        </form>
+        <!-- <form method="POST" action="/uploadfile" enctype="multipart/form-data">
+            <input type="file" name="myFile" value="Select file" />
+            <br />
+            <input type="submit" value="Upload file" />
+            <br />
+        </form> -->
+    </div>
+</body>
+
+</html>

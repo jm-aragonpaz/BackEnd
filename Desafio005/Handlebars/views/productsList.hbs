@@ -1,0 +1,37 @@
+{{> navbar}}
+<h1 class="d-flex align-items-center justify-content-center">Product list</h1>
+<div
+    class="productList container d-flex flex-direction-column flex-wrap justify-content-center"
+>
+    {{#if stock}}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Picture</th>
+                </tr>
+            </thead>
+            <tbody >
+
+                {{#each products}}
+                    <tr>
+                        <th scope="row">{{this.id}}</th>
+                        <td>{{this.title}}</td>
+                        <td>{{this.price}}$</td>
+                        <td><img
+                                src="{{this.thumbnail}}"
+                                style="width: 100px;"
+                                alt="{{this.title}}"
+                            /></td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <h1>No hay productos</h1>
+    {{/if}}
+</div>
+<a class="d-flex justify-content-center mt-4 btn btn-dark" href="/">Upload a
+    product</a>
