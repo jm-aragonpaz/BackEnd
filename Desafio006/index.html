@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="index.js"></script>
+    <title>Desafio006</title>
 </head>
 
 <body>
     <h1>Enter Product</h1>
     <div>
         <form action="/form" method="POST">
-            <input type="text" name="title" placeholder="Name" class='input' />
-            <input type="number" name="price" placeholder="Price" class='input' />
-            <input type="url" name="thumbnail" placeholder="Image" class='input' autocomplete='off' />
+            <input id="title" type="text" name="title" placeholder="Name" class='input' />
+            <input id="price" type="number" name="price" placeholder="Price" class='input' />
+            <input id="url" type="url" name="thumbnail" placeholder="Image" class='input' autocomplete='off' />
             <button type="submit" class='button'>Add</button>
         </form>
         <!-- <form method="POST" action="/uploadfile" enctype="multipart/form-data">
@@ -25,7 +29,25 @@
         </form> -->
     </div>
     <!-- UN DIV PARA LOS PRODUCTOS -->
-    <div id="div-list-msgs">hola</div>
+    <div id="div-list-products">
+        <table class="table">
+            <tbody id="padre">
+
+            </tbody>
+        </table>
+    </div>
+    <div id="div-list-msgs">
+        <h2>Chat con soporte</h2>
+        <form onSubmit="enviarMsg(); return false">
+            <br>
+            <input id="input- mail">
+            <br>
+            <br>
+            <input id="inpu - mensaje" type="text">
+            <br>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
 
 </body>
 

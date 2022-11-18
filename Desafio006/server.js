@@ -24,6 +24,7 @@ io.on('connection', async (socket) => {
 
     console.log('Se conecto un nuevo usuario')
     const products = await data.getAll();
+    console.log(products)
     io.sockets.emit("Products", products);
 
 

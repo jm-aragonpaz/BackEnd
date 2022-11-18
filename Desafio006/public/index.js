@@ -1,5 +1,25 @@
 const socket = io();
-console.log('hola')
+// console.log('hola desde index.js')
+socket.on("connect", () => {
+    console.log("me conecte");
+})
+socket.on('msg', (data) => {
+    console.log(data)
+});
+socket.on('msg-list', (data) => {
+    console.log("msg-list", data);
+    let html = '';
+    data.forEach((obj) => {
+        html += `
+        <div>
+        (${obj.socketid}) ${obj.email} dijo: ${obj.mensaje}
+        </div>
+        `
+    });
+    document.getElementById("div-list-msgs").innerHTML = html;
+});
+
+
 socket.on('Products', (products) => {
     let table = document.getElementById('padre');
     let html = `
@@ -48,4 +68,11 @@ function enviarMsg() {
     const dateFormat = date.toLocaleString();
     socket.emit('info-msg', { email: email, msg: msg, date: dateFormat });
     return false;
+}
+
+
+function enviarMsg() {
+    const msgParaEnvio = document.getElementById('input-msg').value;
+    const email = document.getElementById('input-email').value;
+    socket.emit("msg", { email: email, mensaje: msgParaEnvio })
 }
