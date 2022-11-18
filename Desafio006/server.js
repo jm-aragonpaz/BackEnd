@@ -1,48 +1,54 @@
-//https://socket.io/docs/v4/server-initialization/
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 8000;
-const Contenedor = require('./classContainer.js');
+const { engine } = require("express-handlebars")
 const Contenedeor = require('./classContainer.js');
 const data = new Contenedeor('./productos.txt');
-
-//IMPLEMENTACION
-const httpServer = require('http').createServer(app);
-const io = require('socket.io')(httpServer);
-httpServer.listen(PORT, () => console.log('SERVER ON http://localhost:' + PORT));
+const PORT = process.env.PORT || 8080
+const httpServer = require('http').createServer(app)
+const io = require('socket.io')(httpServer)
+httpServer.listen(PORT, () => console.log('SERVER ON http://localhost: ' + PORT))
 app.use(express.json());
-app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
-app.get('/', (req, res) => {
-    res.sendFile('index.html', { root: __dirname });
+// app.listen(port, () => {
+//     console.log(`Example app listening on port http://localhost:${port}`);
+// });
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
+app.engine('hbs',
+    engine({
+        extname: '.hbs',
+        defaultLayout: 'index.hbs',
+        layoutsDir: __dirname + '/views/layouts',
+        partialsDir: __dirname + '/views/partials',
+    })
+);
+
+
+// app.get('/', (req, res) => {
+//     // res.render('form');
+//     res.render('form')
+// })
+
+
+
+app.post('/productos', async (req, res) => {
+    const body = req.body;
+    try {
+        data.save(body);
+        console.log(body);
+        return res.redirect('/');
+    } catch (error) {
+        res.json({ error: true, msj: "No se pudo guardar el producto" });
+    }
 });
 
-let msgs = []
-io.on('connection', async (socket) => {
-    // msgs.push({
-    //     socketid: socket.id,
-    //     email: "",
-    //     mensaje: 'se conecto ' + socket.id
-    // });
-    console.log('Se conecto un nuevo usuario')
-    const products = await data.getAll();
-    io.sockets.emit("Products", products);
 
-
-    socket.on("product", async (product) => {
-        // msgs.push({
-        //     socketid: socket.id,
-        //     email: data.email,
-        //     mensaje: data.mensaje,
-        //     // Agregar el campo date
-        // })
-        data.save(product)
-        io.sockets.emit("Products", products);
-    })
-
-    socket.on('mensaje', async (msg) => {
-        msgs.save(msg);
-    });
-    const msgsList = await msgs.getAll();
-    io.sockets.emit('Historic', msgsList);
-})
+app.get('/', async (req, res) => {
+    const listaProd = await data.getAll()
+    if (listaProd) {
+        console.log(listaProd)
+        res.render("form", { productos: listaProd });
+    } else {
+        res.json({ error: true, msj: "No se pudo cargar la lista de productos" })
+    }
+});
