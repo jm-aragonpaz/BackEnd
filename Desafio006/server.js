@@ -2,7 +2,6 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
-const Contenedor = require('./classContainer.js');
 const Contenedeor = require('./classContainer.js');
 const data = new Contenedeor('./productos.txt');
 
@@ -22,23 +21,14 @@ app.get('/', (req, res) => {
 
 let msgs = []
 io.on('connection', async (socket) => {
-    // msgs.push({
-    //     socketid: socket.id,
-    //     email: "",
-    //     mensaje: 'se conecto ' + socket.id
-    // });
+
     console.log('Se conecto un nuevo usuario')
     const products = await data.getAll();
     io.sockets.emit("Products", products);
 
 
     socket.on("product", async (product) => {
-        // msgs.push({
-        //     socketid: socket.id,
-        //     email: data.email,
-        //     mensaje: data.mensaje,
-        //     // Agregar el campo date
-        // })
+
         data.save(product)
         io.sockets.emit("Products", products);
     })
@@ -46,6 +36,6 @@ io.on('connection', async (socket) => {
     socket.on('mensaje', async (msg) => {
         msgs.save(msg);
     });
-    const msgsList = await msgs.getAll();
-    io.sockets.emit('Historic', msgsList);
+    // const msgsList = await msgs.getAll();
+    // io.sockets.emit('Historic', msgsList);
 })

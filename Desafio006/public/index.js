@@ -1,5 +1,5 @@
 const socket = io();
-
+console.log('hola')
 socket.on('Products', (products) => {
     let table = document.getElementById('padre');
     let html = `
