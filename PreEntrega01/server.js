@@ -51,8 +51,8 @@ routerProducts.post(
         } else {
             return res.status(403).json({
                 error: true,
-                codeError: '-2',
-                description: 'Solo para administradores',
+                codeError: '-1',
+                description: 'ruta /api/productos - método POST no autorizada',
             });
         }
     },
@@ -76,8 +76,8 @@ routerProducts.put(
         } else {
             return res.status(403).json({
                 error: true,
-                codeError: '-2',
-                description: 'Solo para administradores',
+                codeError: '-1',
+                description: 'ruta /api/productos - método PUT no autorizada',
             });
         }
     },
@@ -101,8 +101,8 @@ routerProducts.delete(
         } else {
             return res.status(403).json({
                 error: true,
-                codeError: '-2',
-                description: 'Solo para administradores',
+                codeError: '-1',
+                description: 'ruta /api/productos - método DELETE no autorizada',
             });
         }
     },
