@@ -5,6 +5,7 @@ const routerProducts = Router();
 const routerCart = Router();
 const Contenedor = require('./classContainer.js');
 const data = new Contenedor('./productos.txt');
+const cart = new Contenedor();
 
 //Defino puertos de interacción
 const port = process.env.PORT || 8080;
@@ -118,3 +119,23 @@ routerProducts.delete(
 );
 /////////////////////////////////////////////////////////////////////////////////
 console.log(isAdmin);
+
+////////////////////////////////////////////////////////////////////////////////
+//CARRITO
+//Crear carrito
+routerCart.post('/', (req, res) => {
+    //Crear carrito
+});
+//Borrar carrito
+routerCart.delete('/:id', (req, res) => {
+    //Vacia carrito y lo elimina
+});
+routerCart.get('/:id/productos', (req, res) => {
+    //Lista todos los productos del carrito
+});
+routerCart.post('/:id/productos', (req, res) => {
+    //Incorpora productos al carrito por su id de producto (ojo)
+});
+routerCart.delete('/:id/productos/:id_prod', (req, res) => {
+    //Borra un elemento del carrito segun su id de producto.
+});
