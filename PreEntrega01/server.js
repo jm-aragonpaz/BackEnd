@@ -4,8 +4,8 @@ const { Router } = express;
 const routerProducts = Router();
 const routerCart = Router();
 const Contenedor = require('./classContainer.js');
-const data = new Contenedor('./productos.txt');
-const cart = new Contenedor();
+const productos = new Contenedor('./productos.txt');
+const cart = new Contenedor('./carrito.txt');
 
 //Defino puertos de interacción
 const port = process.env.PORT || 8080;
@@ -15,8 +15,9 @@ app.listen(port, () => {
 app.use('/api/productos', routerProducts);
 app.use('/api/carrito', routerCart);
 
-app.get('/', (req, res) => {
-    res.json({ titulo: 'PreEntrega 001', curso: 'BackEnd' });
+//Ruta no disponible
+app.get('/*', (req, res) => {
+    res.json({ titulo: 'PreEntrega 001', curso: 'BackEnd', rutas_disponibles: { productos: '/api/productos', carrito: '/api/carrito' } });
 });
 
 // let isAdmin = true;
@@ -25,7 +26,7 @@ let isAdmin = false;
 //RouterProducts
 //GET
 routerProducts.get('/', async (req, res) => {
-    const products = await data.getAll();
+    const products = await productos.getAll();
     if (products) {
         res.json(products);
     } else {
@@ -36,7 +37,7 @@ routerProducts.get('/', async (req, res) => {
 //GET:id
 routerProducts.get('/:id', async (req, res) => {
     const { id } = req.params;
-    const product = await data.getById(id);
+    const product = await productos.getById(id);
     if (!product) {
         res.json({ error: true, msj: 'id no encontrado' });
     } else {
@@ -60,7 +61,7 @@ routerProducts.post(
     (req, res) => {
         const body = req.body;
         try {
-            data.save(body);
+            productos.save(body);
             console.log(body);
             res.json({ success: true, msj: 'El producto fue guardado correctamente', body });
         } catch (error) {
@@ -86,7 +87,7 @@ routerProducts.put(
         try {
             const { id } = req.params;
             const { title, price, thumbnail } = req.body;
-            await data.updateById(title, price, thumbnail, id);
+            await productos.updateById(title, price, thumbnail, id);
             res.json({ succes: true, msj: 'Se actualio el producto' });
         } catch (error) {
             res.json({ error: true, msj: 'error, no se pudo actualizar el producto' });
@@ -110,7 +111,7 @@ routerProducts.delete(
     async (req, res) => {
         try {
             const { id } = req.params;
-            data.deleteById(id);
+            productos.deleteById(id);
             res.json({ success: true, msj: 'Producto borrado' });
         } catch (error) {
             res.json({ error: true, msj: 'No se pudo borrar el Producto' });
@@ -119,6 +120,8 @@ routerProducts.delete(
 );
 /////////////////////////////////////////////////////////////////////////////////
 console.log(isAdmin);
+let fecha = new Date(Date.now());
+console.log(fecha.toLocaleString());
 
 ////////////////////////////////////////////////////////////////////////////////
 //CARRITO
