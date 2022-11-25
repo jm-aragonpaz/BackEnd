@@ -35,7 +35,6 @@ module.exports = class Carrito {
             const cart = cartParse.filter((element) => element.id != id);
             const newCart = JSON.stringify(cart);
             await fs.promises.writeFile(this.file, newCart);
-            return product;
         } catch (error) {
             console.log('Se produjo un error', error);
         }
