@@ -134,5 +134,3 @@ module.exports = class Carrito {
         }
     }
 };
-
-module.exports = Contenedor;
