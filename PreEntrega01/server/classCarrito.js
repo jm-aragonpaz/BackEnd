@@ -72,9 +72,7 @@ module.exports = class Carrito {
     async addProdToCart(id, newProd) {
         try {
             const data = await fs.promises.readFile(this.file, 'utf-8');
-            console.log(data);
             const carts = JSON.parse(data);
-            console.log(carts);
             let cart = carts.find((element) => element.id == id);
             if (cart) {
                 let oldProd = cart.products;
@@ -82,13 +80,11 @@ module.exports = class Carrito {
                 let updCart = { ...cart, products: addProd };
                 let newCarts = carts.map((element) => {
                     if (element.id == id) {
-                        console.log('entro aca');
                         return { ...updCart };
                     } else {
                         return element;
                     }
                 });
-                console.log('llego aca L90.');
                 const strNewCarts = JSON.stringify(newCarts);
                 let writeNewCarts = await fs.promises.writeFile(this.file, strNewCarts);
             } else {
@@ -115,10 +111,12 @@ module.exports = class Carrito {
         try {
             const data = await fs.promises.readFile(this.file, 'utf-8');
             const carts = JSON.parse(data);
+            console.log(id_prod);
             let cart = carts.find((element) => element.id == id);
             if (cart) {
                 let oldProd = cart.products;
-                let delProd = oldProd.filter((el) => el.id == id_prod);
+                let delProd = oldProd.filter((products) => products.id != id_prod);
+                console.log(delProd);
                 let updCart = { ...cart, products: delProd };
                 let newCarts = carts.map((element) => {
                     if (element.id == id) {
