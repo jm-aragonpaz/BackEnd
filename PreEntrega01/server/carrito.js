@@ -9,7 +9,7 @@ const carritos = new Contenedor('./data/carrito.txt');
 routerCart.post('/', async (req, res) => {
     //Crear carrito
     const { title, description, code, price, stock, thumbnail, id } = req.body;
-    let newCart = await carritos.newCart({ title, description, code, price, stock, thumbnail, id });
+    let createdCart = await carritos.newCart({ title, description, code, price, stock, thumbnail, id });
     res.json({ idCreatedCart: createdCart });
 });
 //Borrar carrito

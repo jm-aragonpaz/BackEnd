@@ -19,7 +19,7 @@ module.exports = class Carrito {
             // product.timestamp = new Date(Date.now());
             // product.id = id;
             cartParse.push(newCart);
-            const dataStr = JSON.stringify(dataParse);
+            const dataStr = JSON.stringify(cartParse);
             await fs.promises.writeFile(this.file, dataStr);
             return newCart.id;
         } catch (error) {
@@ -71,8 +71,10 @@ module.exports = class Carrito {
     //Icorporar productos al carrito
     async addProdToCart(id, newProd) {
         try {
-            const data = fs.promises.readFile(this.file, 'utf-8');
+            const data = await fs.promises.readFile(this.file, 'utf-8');
+            console.log(data);
             const carts = JSON.parse(data);
+            console.log(carts);
             let cart = carts.find((element) => element.id == id);
             if (cart) {
                 let oldProd = cart.products;
@@ -80,11 +82,13 @@ module.exports = class Carrito {
                 let updCart = { ...cart, products: addProd };
                 let newCarts = carts.map((element) => {
                     if (element.id == id) {
+                        console.log('entro aca');
                         return { ...updCart };
                     } else {
                         return element;
                     }
                 });
+                console.log('llego aca L90.');
                 const strNewCarts = JSON.stringify(newCarts);
                 let writeNewCarts = await fs.promises.writeFile(this.file, strNewCarts);
             } else {
