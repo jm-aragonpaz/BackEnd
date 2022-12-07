@@ -1,0 +1,24 @@
+{
+  "name": "7-base-de-datos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "knex": "^0.21.17",
+    "mysql": "^2.18.1",
+    "socket.io": "^4.5.4",
+    "sqlite3": "^5.1.2",
+    "uninstall": "^0.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
