@@ -1,0 +1,41 @@
+use ecommerce
+
+db.createCollection("mensajes")
+db.createCollection("productos")
+
+1 y 2)
+db.mensajes.insertMany([{author:"Pipo", msj:"Hola Mundo", timestamp: "2022-12-18 12:00:00"},{author:"Pipo", msj:"Vamos a salir campeones", timestamp: "2022-12-18 12:03:00"}, {author:"Pipo", msj:"Hoy lo ganamos", timestamp: "2022-12-18 12:05:00"}, {author:"Pipo", msj:"No se nos puede escapar", timestamp: "2022-12-18 12:10:00"}, {author:"Pipo", msj:"Jugando asi les hacemos 4", timestamp: "2022-12-18 12:20:00"}, {author:"Pipo", msj:"Fideo Di Maria esta imparable", timestamp: "2022-12-18 12:30:00"}, {author:"Pipo", msj:"Que golazo fue el segundo", timestamp: "2022-12-18 12:40:00"}, {author:"Pipo", msj:"Arranca el segundo tiempo", timestamp: "2022-12-18 12:50:00"}, {author:"Pipo", msj:"Que sufrimientooooooo", timestamp: "2022-12-18 14:35:00"}, {author:"Pipo", msj:"Dale campeon", timestamp: "2022-12-18 15:00:00"}])
+
+db.productos.insertMany([{title:"Driver", price: 200 , description: "Driver Titleist", category: "drivers"}, {title:"Ironset Taylormade", price: 700, description: "Hierros del 3 al PW", category: "ironset"}, {title:"Putter Scotty Cameron", price: 380, description: "Putter Scotty Cameron Newport 2", category: "putter"}, {title:"Zapatillas Nike", price: 300, description: "Zapatillas de Golf Nike", category: "indumentaria"}, {title:"Pelotas Titleist Pro V1", price: 80, description: "Caja de pelotas Titleist Pro V1 x3", category: "pelotas"}, {title:"Hierros Callaway", price: 690, description: "Juego de hierros Calaway, vara acero", category: "ironset"}, {title:"Pelotas Wilson Duo Soft", price: 75, description: "Pelotas Wilson Duo Soft x3", category: "pelotas"}, {title:"Pantalones Nike", price: 100 , description: "Pantalones Nike Slim 5 Pockets", category: "indumentaria"}, {title:"Zapatillas Nike Victory", price: 100, description: "Zapatillas Nike Victory G Lite Dama", category: "indumentaria"}, {title:"Guante Callaway", price: 20, description: "Guante Callaway Dawn Patrol Diestro", category: "idnumentaria"}])
+
+3)Listar todos los documentos de cada colección
+
+- db.mensajes.find()
+
+- db.productos,find()
+
+4) Mostrar la cantidad de documentos almacenados en cada una de ellas.
+db.productos.countDocuments()
+db.mensajes.countDocuments()
+
+5) 
+    a. Agregar un producto más en la colección de productos 
+        db.productos.insertOne({title:"Driver", price: 250 , description: "Driver Ping", category: "drivers"})
+    b. Realizar una consulta por nombre de producto específico:
+        i. Listar los productos con precio menor a 1000 pesos.
+            db.productos.find({price: {$lt: 100}})
+        ii. Listar los productos con precio entre los 1000 a 3000 pesos.
+            db.productos.find({$and: [{price: {$gt: 100}}, {price: {$lt:300}}]})
+        iii.Listar los productos con precio mayor a 3000 pesos.
+            db.productos.find({price: {$gt: 300}})
+        iv. Realizar una consulta que traiga sólo el nombre del tercer producto más barato.
+            db.productos.find({}, {_id:0, title:1}).skip(2).limit(1).sort({price:1})
+    c. Hacer una actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100.
+        db.productos.updateMany({},{$set:{stock:100}})
+    d. Cambiar el stock a cero de los productos con precios mayores a 4000 pesos. 
+        db.productos.updateMany({price:{$gt:400}},{$set:{stock:0}})
+    e. Borrar los productos con precio menor a 1000 pesos 
+        db.productos.deleteMany({price:{$lt:100}})
+6) Crear un usuario 'pepe' clave: 'asd456' que sólo pueda leer la base de datos ecommerce. Verificar que pepe no pueda cambiar la información.
+    db.createUser({user:"pepe", pwd:"asd456", roles:[{role: "read", db:"ecommerce"}]})
+    
