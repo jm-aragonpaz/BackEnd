@@ -2,13 +2,21 @@
   "name": "preentrega02",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "firebase-admin": "^11.4.1"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "firebase": "^9.15.0",
+    "firebase-admin": "^11.4.1",
+    "mongoose": "^6.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

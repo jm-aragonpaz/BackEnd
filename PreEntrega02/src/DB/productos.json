@@ -1,0 +1,32 @@
+[
+    {
+        "name": "driver",
+        "timestamp": 1672337819453,
+        "description": "titleist",
+        "code": "0002",
+        "imgUrl": "sñdvanñsdjnc",
+        "price": "200",
+        "stock": "12",
+        "id": 1
+    },
+    {
+        "name": "driver",
+        "timestamp": "2022-12-29T18:23:12.911Z",
+        "description": "titleist",
+        "code": "0002",
+        "imgUrl": "sñdvanñsdjnc",
+        "price": "200",
+        "stock": "12",
+        "id": 2
+    },
+    {
+        "name": "driver",
+        "timestamp": "2022-12-29T18:23:34.683Z",
+        "description": "titleist",
+        "code": "0003",
+        "imgUrl": "sñdvanñsdjnc",
+        "price": "200",
+        "stock": "12",
+        "id": 3
+    }
+]
