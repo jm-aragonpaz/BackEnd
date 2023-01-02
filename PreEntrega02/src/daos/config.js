@@ -1,2 +1,2 @@
-const persistence = 'memoria'; //archivo, memoria, mongo, firebase
+const persistence = 'mongo'; //archivo, memoria, mongo, firebase
 export default persistence;
