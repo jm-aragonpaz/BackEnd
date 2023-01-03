@@ -1,11 +1,11 @@
 import ContenedorFirebase from '../../contenedores/ContenedorFirebase.js';
 
-const archivoConfig = './privi.json';
-const coleccionCarritos = 'carritos';
+// const archivoConfig = './privi.json';
+// const coleccionCarritos = 'carritos';
 
 class CarritosDaoFirebase extends ContenedorFirebase {
     constructor() {
-        super(archivoConfig, coleccionCarritos);
+        super('carritos');
     }
 }
 
