@@ -13,7 +13,7 @@ routerCarrito.get('/', async (req, res) => {
 
 routerCarrito.get('/:id', async (req, res) => {
     let { id } = req.params;
-    res.json(await carrito.listarPorId(id, 'carritos'));
+    res.json(await carrito.listarPorId(id, 'carrito'));
 });
 
 routerCarrito.post('/', async (req, res) => {

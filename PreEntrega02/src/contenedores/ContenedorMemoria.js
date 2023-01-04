@@ -1,100 +1,215 @@
-class ContenedorMemoria {
-    constructor(arrayMemoria) {
-        this.arrayMemoria = arrayMemoria;
-    }
+import productosRouter from '../../productos.js';
 
-    async listarTodos() {
-        try {
-            const objetos = arrayMemoria;
-            return objetos;
-        } catch (err) {
-            console.log(arrayMemoria);
-            return { error: 'No encuentro todos los productos' };
+class ContenedorMemoria {
+    constructor() {
+        this.productos = [
+            {
+                id: 1,
+                timestamp: '3 / 01 / 2023, 20:17:50',
+                name: 'Driver',
+                description: 'Driver Titleist',
+                code: '001',
+                imgUrl: 'sadfasdfsdf',
+                price: 300,
+                stock: 12,
+            },
+            {
+                id: 2,
+                timestamp: '28 / 12 / 2022, 19:34:30',
+                name: 'Putter',
+                description: 'Scotty Cameron Newport 2',
+                code: '002',
+                imgUrl: 'svsdfvsdfvsdf',
+                price: 250,
+                stock: 10,
+            },
+        ];
+        this.carritos = [
+            {
+                id: 1,
+                timestampCarrito: '04 / 01 /2023, 19:23:45',
+                productos: [
+                    {
+                        id: 1,
+                        timestamp: '3 / 01 / 2023, 20:17:50',
+                        name: 'Driver',
+                        description: 'Driver Titleist',
+                        code: '001',
+                        imgUrl: 'sadfasdfsdf',
+                        price: 300,
+                        stock: 12,
+                    },
+                    {
+                        id: 2,
+                        timestamp: '28 / 12 / 2022, 19:34:30',
+                        name: 'Putter',
+                        description: 'Scotty Cameron Newport 2',
+                        code: '002',
+                        imgUrl: 'svsdfvsdfvsdf',
+                        price: 250,
+                        stock: 10,
+                    },
+                ],
+            },
+        ];
+    }
+    listarTodos(list) {
+        if (list == 'productos') {
+            return this.productos;
+        } else if (list == 'carritos') {
+            return this.carritos;
+        } else {
+            return 'No existe la lista seleccionda';
         }
     }
 
-    async listarPorID(id) {
-        const objetos = arrayMemoria;
-
-        const buscado = arrayMemoria.find((ob) => ob.id == id);
-        if (buscado) {
-            return buscado;
-        } else {
-            return { error: 'No encontrado' };
+    listarPorId(id, list) {
+        try {
+            let lista;
+            if (list == 'productos') {
+                lista = this.productos;
+            } else if (list == 'carrito') {
+                lista = this.carritos;
+            } else {
+                return 'No existe la lista seleccionada';
+            }
+            const index = lista.findIndex((object) => object.id == id);
+            if (lista[index]) {
+                return lista[index];
+            } else {
+                return 'No existe el id seleccionado';
+            }
+        } catch (error) {
+            console.log('Se produjo un error');
+            return 'Se ha producido un error';
         }
     }
 
     async save(ob) {
         try {
-            const objs = await this.listarTodos();
-            let id;
-            if (!objs || !objs.lenght) {
-                id = 1;
-                console.log(id);
-            } else {
-                objs.forEach((ob) => {
-                    id = ob.id;
-                });
-                id = id + 1;
-            }
-            // console.log(ob);
-            const guardar = objs && objs.lenght ? [...objs, { ...ob, id }] : { ...ob, id };
-            // console.log(guardar);
-            let arrayMemoria = guardar;
-            console.log(arrayMemoria);
+            const lista = await this.productos;
+            let idMax = Math.max(...lista.map((el) => el.id));
+            let id = idMax + 1;
+            let prodNew = {
+                id: id,
+                timestamp: ob.timestamp,
+                name: ob.name,
+                description: ob.description,
+                code: ob.code,
+                imgUrl: ob.imgUrl,
+                price: ob.price,
+                stock: ob.stock,
+            };
+            this.productos.push(prodNew);
+            return id;
         } catch (error) {
-            return { error };
+            console.log('Se ha producido un error al guardar');
+            return 'Se ha producido un error al guardar';
         }
     }
 
-    async actualizar(objeto) {
+    async update(id, objeto) {
         try {
-            const objs = arrayMemoria;
-            const obj = arrayMemoria.listarPorID(objeto.id);
-            if (obj) {
-                const newObj = [...objs, obj];
-                arrayMemoria = newObj;
+            const lista = this.productos;
+            const index = lista.findIndex((object) => object.id == id);
+            if (lista[index]) {
+                const prodNew = {
+                    id: id,
+                    timestamp: objeto.timestamp,
+                    name: objeto.name,
+                    description: objeto.description,
+                    code: objeto.code,
+                    imgUrl: objeto.imgUrl,
+                    price: objeto.price,
+                    stock: objeto.stock,
+                };
+                this.productos[index] = prodNew;
+                return `Se actualizo el producto ${prodNew.name}`;
+            } else {
+                return 'No existe el id seleccionado';
             }
         } catch (err) {
-            return { err };
+            console.log('Se produjo un error al actualizar el producto');
+            return 'Se ha producido un error';
         }
     }
 
-    async eliminar(id) {
+    async delete(id, list) {
         try {
-            const objs = this.listarTodos();
-            const obj = objs.listarPorID(objeto.id);
-            if (!objs || !objs.lenght || !obj) {
-                return { error: 'No se encontró qué borrar' };
-            }
-            const newObjs = objs.filter((ob) => ob.id != id);
-            this.arrayMemoria = newObjs;
-        } catch (err) {
-            return { err };
-        }
-    }
-
-    async eliminarProductoDelCarrito(id, id_prod) {
-        try {
-            const esteCarrito = this.listarPorID(id);
-
-            if (esteCarrito) {
-                let listaProductos = esteCarrito.productos;
-                listaProductos.filter((item) => item.id != id_prod);
-                esteCarrito.productos = listaProductos;
-                this.arrayMemoria.map((item) => {
-                    if (item.id == id) {
-                        item = [...esteCarrito];
-                    } else {
-                        return item;
-                    }
-                });
+            let lista;
+            if (list == 'productos') {
+                lista = this.productos;
+            } else if (list == 'carrito') {
+                lista = this.carritos;
             } else {
-                console.log('no existe el carrito');
+                return 'No existe la lista';
+            }
+            const index = lista.findIndex((object) => object.id == id);
+            if (lista[index]) {
+                if (list == 'productos') {
+                    this.productos.splice(index, 1);
+                    return `Se elimino con exito`;
+                } else if (list == 'carritos') {
+                    this.carritos.splice(index, 1);
+                    return `Se elimino con exito`;
+                }
+            } else {
+                return 'No existe el numero de id seleccionado';
+            }
+        } catch (err) {
+            console.log('Se ha producido un error');
+            return 'Se ha producido un error';
+        }
+    }
+
+    async addCart(timestampCarrito) {
+        try {
+            const lista = this.carritos;
+            let idCarrito;
+            if (lista.length > 0) {
+                let idMax = Math.max(...lista.map((el) => el.id));
+                idCarrito = idMax + 1;
+            } else {
+                idCarrito = 1;
+            }
+            let cartNew = {
+                id: idCarrito,
+                timestampCarrito: timestampCarrito,
+                productos: [],
+            };
+            this.carritos.push(cartNew);
+            return idCarrito;
+        } catch (error) {
+            console.log('Se produjo un error');
+            return 'Se produjo un error';
+        }
+    }
+
+    async getProductFromCart(id) {
+        try {
+            const lista = this.carritos;
+            const index = lista.findIndex((object) => object.id == id);
+            if (index) {
+                return lista[index].productos;
+            } else {
+                return 'No existe el id de carrito seleccionado';
             }
         } catch (error) {
-            return { error };
+            console.log('Se produjo un error');
+            return 'Se produjo un error';
         }
+    }
+
+    async addProdToCart(id, producto) {
+        const lista = this.carritos;
+        const index = lista.findIndex((object) => object.id == id);
+        lista[index].productos.push(producto);
+    }
+    async delProdFromCart(id, productoCarrito, id_prod) {
+        const lista = this.carritos;
+        const index = lista.findIndex((object) => (object.id = id));
+        const indexProduct = lista[index].productos.findIndex((object) => object.id == id_prod);
+        this.carritos[index].productos.splice(id_prod, 1);
     }
 }
 

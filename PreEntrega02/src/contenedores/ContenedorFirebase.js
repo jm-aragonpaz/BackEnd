@@ -104,7 +104,7 @@ class ContenedorFirebase {
                 timestamp: timestamp,
                 productos: [],
             });
-            return res.id;
+            return result.id;
         } catch (error) {
             console.log('Se produjo un error');
             return 'Se produjo un error';
@@ -127,7 +127,7 @@ class ContenedorFirebase {
     }
     async eliminarProductoDelCarrito(id, id_prod) {
         let resultado = await this.coleccion.doc(id).get();
-        resultad = resultado.data();
+        resultado = resultado.data();
         const indexProducto = resultado.productos.findIndex((object) => object.id == id_prod);
         resultado.productos.splice(indexProducto, 1);
         await this.coleccion.doc(id).update({

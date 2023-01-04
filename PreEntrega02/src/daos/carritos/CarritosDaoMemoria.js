@@ -1,8 +1,8 @@
 import ContenedorMemoria from '../../contenedores/ContenedorMemoria.js';
-const arrMemoria = [];
+// const arrMemoria = [];
 class CarritosDaoMemoria extends ContenedorMemoria {
     constructor() {
-        super(arrMemoria);
+        super();
     }
 }
 

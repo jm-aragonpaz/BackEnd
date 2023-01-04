@@ -21,10 +21,10 @@ const middlewareAdmin = (req, res, next) => {
 productosRouter.get('/:id?', async (req, res) => {
     const { id } = req.params;
     if (id) {
-        const listaProductos = await productos.listarPorID(id);
+        const listaProductos = await productos.listarPorID(id, 'productos');
         res.json({ productos: listaProductos });
     } else {
-        const listaProductos = await productos.listarTodos();
+        const listaProductos = await productos.listarTodos('productos');
         res.json({ productos: listaProductos });
     }
 });
