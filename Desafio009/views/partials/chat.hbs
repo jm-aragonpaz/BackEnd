@@ -1,0 +1,37 @@
+<h1>Chat WebSocket</h1>
+<div class='chat-container'>
+    <h5 id='h5'></h5>
+    <form id='myAnchor' onsubmit='return enviarMsg()'>
+        {{! input mensajes ID }}
+        <input type='email' id='email-id' placeholder='Email Id' required='true' />
+        <div class='main-user-data'>
+            {{! input nombre }}
+            <input type='name' id='nombre' placeholder='Nombre' required='true' />
+            {{! input apellido }}
+            <input type='text' id='apellido' placeholder='Apellido' required='true' />
+            {{! input edad }}
+            <input type='number' id='edad' placeholder='Edad' required='true' />
+
+        </div>
+        <div class='main-user-data'>
+            {{! Alias }}
+            <input type='text' id='alias' placeholder='Alias(Tu nombre en el chat)' />
+
+            {{! Avatar }}
+            <input type='text' id='avatar' placeholder='Url Avatar' required='true' />
+
+        </div>
+
+        {{! area de mensajes }}
+        <p class='avatarUrl'>🟢 Avatar URL de prueba:
+            https://cdn-icons-png.flaticon.com/512/1236/1236123.png</p>
+        <div id='mgs-area' class='chat-area'>
+
+        </div>
+        {{! input mensajes }}
+        <div class='input-msg-container'>
+            <input type='text' id='inputMsg' placeholder='Mensaje' required='true' />
+            <button class='my-button' type='submit'>Enviar</button>
+        </div>
+    </form>
+</div>

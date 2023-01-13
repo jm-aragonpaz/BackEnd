@@ -8,6 +8,7 @@ class Contenedor {
     getAll = async () => {
         try {
             const file = await fs.promises.readFile(this.filePath);
+            console.log(file);
             const prods = JSON.parse(file);
             console.log('Se obtuvo la lista');
             return prods;

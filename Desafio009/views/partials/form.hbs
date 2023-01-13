@@ -1,0 +1,27 @@
+<h1>Postea un producto</h1>
+<form id='myAnchor' onsubmit='return postProducto()'>
+    <input
+        type='text'
+        name='nombre'
+        id='nombreProducto'
+        class='form-control'
+        placeholder='Nombre del producto'
+        required='true'
+    />
+    <input
+        type='number'
+        name='precio'
+        id='precioProducto'
+        class='form-control'
+        placeholder='Precio del producto'
+        required='true'
+    />
+    <input
+        type='text'
+        name='thumbnail'
+        id='urlProducto'
+        class='form-control'
+        placeholder='URL de la imagen'
+    />
+    <button class='my-button' type='submit' value='Agregar'>Postear</button>
+</form>

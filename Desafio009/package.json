@@ -7,7 +7,7 @@
     "start": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Juan Manuel Aragon Paz",
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
