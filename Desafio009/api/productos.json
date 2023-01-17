@@ -1,26 +1,32 @@
 [
     {
-        "title": "Escuadra",
-        "price": "123",
-        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+        "name": "driver",
+        "timestamp": 1672337819453,
+        "description": "Ping G425",
+        "code": "0002",
+        "imgUrl": "https://thegolfershop.com.ar/wp-content/uploads/2021/06/Ping-G425-Max-driver-web.jpg.webp",
+        "price": "700",
+        "stock": "12",
         "id": 1
     },
     {
-        "title": "Calculadora",
-        "price": "234",
-        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
+        "name": "hierros",
+        "timestamp": "2022-12-29T18:23:12.911Z",
+        "description": "TaylorMade",
+        "code": "0003",
+        "imgUrl": "https://thegolfershop.com.ar/wp-content/uploads/2021/12/Hierro-TaylorMade-P790-4PW-1.jpeg.webp",
+        "price": "1500",
+        "stock": "12",
         "id": 2
     },
     {
-        "title": "Globo Terraqueo",
-        "price": 345,
-        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
+        "name": "putter",
+        "timestamp": "2022-12-29T18:23:34.683Z",
+        "description": "Wilson harmonized M1",
+        "code": "0003",
+        "imgUrl": "https://thegolfershop.com.ar/wp-content/uploads/2019/11/Putter-Wilson-Harmonized2.jpg.webp",
+        "price": "200",
+        "stock": "12",
         "id": 3
-    },
-    {
-        "title": "Regla",
-        "price": 25,
-        "thumbnail": "https://e7.pngegg.com/pngimages/751/149/png-clipart-ruler-ruler-thumbnail.png",
-        "id": 4
     }
 ]

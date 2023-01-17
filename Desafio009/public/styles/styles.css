@@ -1,9 +1,9 @@
 .p-cualquiera {
-    background-color: blueviolet;
+    background-color: black;
 }
 
 .footer {
-    color: blue;
+    color: green;
 }
 
 h1 {
@@ -49,7 +49,7 @@ p {
     align-items: center;
     justify-content: center;
     font-family: 'Lucida Console', 'Courier New', monospace;
-    color: white;
+    color: black;
 }
 
 /* Chat */
@@ -70,7 +70,7 @@ p {
 }
 
 .chat-area {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: lightgreen;
     backdrop-filter: blur(10px);
     border-radius: 10px;
     width: 100%;
@@ -87,6 +87,7 @@ p {
 
 .avatarUrl {
     font-size: 10px;
+    color: black;
 }
 
 .p-email {
@@ -103,7 +104,7 @@ p {
 }
 
 .msj-container {
-    background-color: rgba(255, 255, 255, 0.281);
+    background-color: rgba(214, 231, 212, 0.295);
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
@@ -120,21 +121,13 @@ body {
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    background: hsla(235, 100%, 78%, 1);
+    background: rgb(143, 255, 143);
 
-    background: linear-gradient(90deg, hsla(235, 100%, 78%, 1) 0%, hsla(222, 77%, 33%, 1) 100%);
+    background: linear-gradient(90deg, rgb(143, 255, 171) 0%, rgb(26, 155, 0) 100%);
 
-    background: -moz-linear-gradient(
-        90deg,
-        hsla(235, 100%, 78%, 1) 0%,
-        hsla(222, 77%, 33%, 1) 100%
-    );
+    background: -moz-linear-gradient(90deg, rgb(143, 255, 208) 0%, rgb(19, 149, 41) 100%);
 
-    background: -webkit-linear-gradient(
-        90deg,
-        hsla(235, 100%, 78%, 1) 0%,
-        hsla(222, 77%, 33%, 1) 100%
-    );
+    background: -webkit-linear-gradient(90deg, rgb(143, 255, 208) 0%, rgb(19, 149, 41) 100%);
     margin: 0;
     padding: 0;
 }
@@ -182,8 +175,8 @@ input {
 
 input:focus {
     outline: none !important;
-    border: 2px solid orange;
-    box-shadow: 0 0 10px #719ece;
+    border: 2px solid rgb(0, 112, 19);
+    box-shadow: 0 0 10px #71ce71;
 }
 
 .button-container {
@@ -194,8 +187,8 @@ input:focus {
 }
 
 .my-button {
-    background: linear-gradient(to right, #28e7ce, #33bee0);
-    background-color: #28e7ce;
+    background: linear-gradient(to right, #28e738, #25df63);
+    background-color: #25df63;
     color: #fff;
     font-family: Trebuchet MS;
     font-size: 16px;
@@ -224,9 +217,9 @@ input:focus {
 }
 
 .my-button:hover {
-    background: linear-gradient(to right, #59ead3, #5ec5e3);
-    background-color: #59ead3;
-    border: 2px solid orange;
+    background: linear-gradient(to right, #68e472, #46d676);
+    background-color: #019c0e;
+    border: 2px solid green;
 }
 
 .my-button:active {
@@ -236,7 +229,7 @@ input:focus {
 /* footer */
 
 .footer {
-    color: white;
+    color: black;
     animation: fadeIn 1.5s;
 }
 
