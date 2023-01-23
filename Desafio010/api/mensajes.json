@@ -1,0 +1,67 @@
+[
+   {
+      "author": {
+         "email": "pipo@pipo",
+         "nombre": "Pipo",
+         "apellido": "Pipo",
+         "edad": "35",
+         "alias": "Pipo",
+         "avatar": "https://www.flaticon.com/free-sticker/crocodile_4193310?related_id=4193310"
+      },
+      "text": "Aca va el primer mensaje",
+      "timestamp": "8:47 pm",
+      "id": 1
+   },
+   {
+      "author": {
+         "email": "pipo@pipo",
+         "nombre": "Pipo",
+         "apellido": "Pipo",
+         "edad": "35",
+         "alias": "Pipo",
+         "avatar": "https://cdn-icons-png.flaticon.com/512/4193/4193310.png"
+      },
+      "text": "Aca va el segundo msj mensaje",
+      "timestamp": "8:47 pm",
+      "id": 2
+   },
+   {
+      "author": {
+         "email": "pipo@pipo",
+         "nombre": "Pipo",
+         "apellido": "dsfdgs",
+         "edad": "45",
+         "alias": "pipo",
+         "avatar": "https://www.flaticon.com/free-sticker/crocodile_4193310?related_id=4193310"
+      },
+      "text": "Tercer mensaje",
+      "timestamp": "8:48 pm",
+      "id": 3
+   },
+   {
+      "author": {
+         "email": "pipo@pipo",
+         "nombre": "Juan Manuel",
+         "apellido": "dsfdgs",
+         "edad": "35",
+         "alias": "pipo",
+         "avatar": "https://cdn-icons-png.flaticon.com/512/4193/4193310.png"
+      },
+      "text": "Cuarto mensaje",
+      "timestamp": "8:57 pm",
+      "id": 4
+   },
+   {
+      "author": {
+         "email": "pipo@pipo",
+         "nombre": "Juan Manuel",
+         "apellido": "dsfdgs",
+         "edad": "22",
+         "alias": "pipo",
+         "avatar": "https://cdn-icons-png.flaticon.com/512/4193/4193310.png"
+      },
+      "text": "Otro mensaje mas",
+      "timestamp": "8:58 pm",
+      "id": 5
+   }
+]
