@@ -1,0 +1,38 @@
+[
+   {
+      "name": "driver",
+      "timestamp": 1672337819453,
+      "description": "Ping G425",
+      "code": "0002",
+      "imgUrl": "https://thegolfershop.com.ar/wp-content/uploads/2021/06/Ping-G425-Max-driver-web.jpg.webp",
+      "price": "700",
+      "stock": "12",
+      "id": 1
+   },
+   {
+      "name": "hierros",
+      "timestamp": "2022-12-29T18:23:12.911Z",
+      "description": "TaylorMade",
+      "code": "0003",
+      "imgUrl": "https://thegolfershop.com.ar/wp-content/uploads/2021/12/Hierro-TaylorMade-P790-4PW-1.jpeg.webp",
+      "price": "1500",
+      "stock": "12",
+      "id": 2
+   },
+   {
+      "name": "putter",
+      "timestamp": "2022-12-29T18:23:34.683Z",
+      "description": "Wilson harmonized M1",
+      "code": "0003",
+      "imgUrl": "https://thegolfershop.com.ar/wp-content/uploads/2019/11/Putter-Wilson-Harmonized2.jpg.webp",
+      "price": "200",
+      "stock": "12",
+      "id": 3
+   },
+   {
+      "name": "Wedge",
+      "price": "250",
+      "imgUrl": "https://thegolfershop.com.ar/wp-content/uploads/2021/11/JAWS-Full-Toe-Wedge-2021-Raw-Black-Raw-Face-Chrome-Combo-Concept.jpg.webp",
+      "id": 4
+   }
+]
