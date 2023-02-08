@@ -1,107 +1,75 @@
+////@ts-check
+// 0 conexion socket desde el front
 const socket = io();
-
-/* Desnormalizacion */
-
-const authorSchema = new normalizr.schema.Entity('authors', {}, { idAttribute: 'email' });
-const messageSchema = new normalizr.schema.Entity('messages', {
-    author: authorSchema,
+socket.on('connect', () => {
+    console.log('Conectado a socket');
 });
 
-const chatSchema = new normalizr.schema.Entity('chats', {
-    messages: [messageSchema],
-});
+//2 envio del form por parte del usuario
 
-// Envia mensajes al backend
+const sendProd = () => {
+    const title = document.getElementById('inputTitle').value;
+    const price = document.getElementById('inputPrice').value;
+    const thumbnail = document.getElementById('inputThumbnail').value;
+    socket.emit('newProd', { title: title, price: price, thumbnail: thumbnail });
+    //Limpio el form
+    document.getElementById('inputTitle').value = '';
+    document.getElementById('inputPrice').value = '';
+    document.getElementById('inputThumbnail').value = '';
+    return;
+};
 
-function enviarMsg() {
-    const emailId = document.getElementById('email-id').value;
-    const nombre = document.getElementById('nombre').value;
-    const apellido = document.getElementById('apellido').value;
-    const edad = document.getElementById('edad').value;
-    const alias = document.getElementById('alias').value;
-
-    const avatar = document.getElementById('avatar').value;
-    const chatInput = document.getElementById('inputMsg').value;
-    const userData = {
-        author: {
-            email: emailId,
-            nombre: nombre,
-            apellido: apellido,
-            edad: edad,
-            alias: alias,
-            avatar: avatar,
-        },
-        text: chatInput,
-    };
-    console.log(userData);
-    socket.emit('msg', userData);
-    chatInput.value = '';
-    return false;
-}
-
-// Recibe mensajes del back y los renderiza en el DOM
-
-socket.on('msg-list', (data) => {
-    const dataMsg = normalizr.denormalize(data.result, chatSchema, data.entities);
-
-    // Porcentaje deberia ser algo asi ...... idea pero no funciona aun
-
-    const totalNormal = JSON.stringify(dataMsg, null, 4).length;
-    const normalizado = JSON.stringify(data, null, 4).length;
-
-    var porcentaje = (normalizado / totalNormal) * 100;
-    var intPorcentaje = Math.round(porcentaje);
-    const h5 = document.getElementById('h5');
-    h5.innerText = `Compression: ${intPorcentaje} %`;
-
-    console.log('Normalizado:', JSON.stringify(dataMsg, null, 4).length);
-    console.log('Normal:', JSON.stringify(data, null, 4).length);
-
-    console.log('data:', dataMsg);
-
+const render = (data) => {
     let html = '';
-    dataMsg.messages.forEach((item) => {
-        html += `
-                <div class="msj-container" >
-                <img src="${item.author.avatar}" class="avatar" alt=""><p class="p-email">${item.timestamp} ${item.author.alias} dice: <br> <span> ${item.text}</span> </p>
-                </div> 
-                `;
+    data.forEach((obj) => {
+        html += `<tr>
+                <td class='align-middle text-center'>${obj.title}</td>
+                <td class='align-middle text-center'>${obj.price}</td>
+                <td class='align-middle text-center'><img src='${obj.thumbnail}' width='50 height='auto' class='img-fluid/></td>
+                </tr>`;
     });
-    document.getElementById('mgs-area').innerHTML = html;
+    console.log(`html: ${html}`);
+    document.getElementById('productos').innerHTML = html;
+};
+
+//obtengo desde el front los productos actualizados
+socket.on('products', (data) => {
+    console.log(`data: ${data}`);
+    render(data);
 });
 
-// Funcion para enviar productos el backend
+//chat
+const fyh = new Date().toLocaleDateString() + new Date().toTimeString();
 
-function postProducto() {
-    const nombreProducto = document.getElementById('nombreProducto').value;
-    const precioProducto = document.getElementById('precioProducto').value;
-    const urlProducto = document.getElementById('urlProducto').value;
-    socket.emit('product', {
-        name: nombreProducto,
-        price: precioProducto,
-        imgUrl: urlProducto,
-    });
-    return false;
-}
+const sendMsg = () => {
+    const email = document.getElementById('input-email').value;
+    const msgParaEnvio = document.getElementById('input-msg').value;
+    socket.emit('newMsg', { email: email, date: fyh, msj: msgParaEnvio });
+    document.getElementById('input-msg').value = '';
+    return;
+};
 
-//producList
-socket.on('productos-list', (data) => {
-    console.log('productos-list:' + data);
-    console.log('ACA ESTOY');
+const chatRender = (data) => {
     let html = '';
-    data.forEach((item) => {
+    data.forEach((msg) => {
         html += `
-        <div class="products-card">
-            <img src="${item.imgUrl}" class="product-img"/>
-            <p>Producto: ${item.name}</p>
-            <p>Precio: $ ${item.price}</p>
-        </div>
-        `;
+        <li style='display: flex; flex=direction:row;'>
+            <div id='author' style='font-weight:bold; color:blue;'>
+                ${msg.email}<span style='color:brown; font-weight:normal; margin-left:5px;'>${fyh}</span>
+            </div>
+            <div id='msj' style='color:green; font-style:italic: margin-left:15px;'>
+                ${msg.msj}
+            </div>
+        </li>`;
     });
-    document.getElementById('productos-list').innerHTML = html;
+    document.getElementById('fullChat').innerHTML = html;
+};
+
+socket.on('msgs', (data) => {
+    chatRender(data);
 });
 
-socket.on('productos-test', (data) => {
+socket.on('productsTest', (data) => {
     console.log('productos-test:' + data);
     let html = '';
     data.forEach((item) => {
@@ -113,25 +81,5 @@ socket.on('productos-test', (data) => {
         </div>
         `;
     });
-    document.getElementById('productos-test').innerHTML = html;
-});
-
-//funci9on de login
-function enviarLog() {
-    const usuario = document.getElementById('usuario').value;
-    const password = document.getElementById('password').value;
-    console.log('se intento loguear');
-    socket.emit('userdata', { usuario, password });
-    return false;
-}
-
-// document.getElementById('myAnchor').addEventListener('click', function (event) {
-//     event.preventDefault();
-// });
-document.getElementById('preventDefault').addEventListener('click', function (event) {
-    event.preventDefault();
-});
-
-document.getElementById('preventDefault-chat').addEventListener('click', function (event) {
-    event.preventDefault();
+    document.getElementById('productsTest').innerHTML = html;
 });
