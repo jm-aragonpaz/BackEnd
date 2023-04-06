@@ -1,0 +1,11 @@
+config:
+    target: 'http://localhost:8080'
+    phases:
+        - duration: 60
+          arrivalRate: 10
+
+scenarios:
+    - name: 'Test de carga a endpoint info'
+      flow:
+          - get:
+                url: '/info'

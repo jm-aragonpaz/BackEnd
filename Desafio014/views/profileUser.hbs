@@ -1,0 +1,94 @@
+{{> navbarLog}}
+
+<section class='p-4 bg-light'>
+    <h1 class='text-secondary text-center text-success'>GRACIAS POR INICIAR SESION!</h1>
+
+    <div class='mb-3'>
+        <div>
+            <label class='form-label fw-bold text-secondary fs-3' for='login'>Tus datos son:</label>
+            <div>
+                usuario:
+                {{user.username}}
+                <br />
+                contraseña:
+                {{user.password}}
+            </div>
+        </div>
+        <br />
+        <button type='button' class='btn btn-outline-success'><a
+                href='/logout'
+                style='text-decoration: none;'
+            >Salir</a></button>
+    </div>
+</section>
+
+{{! FORMULARIO INGRESO PRODUCTO }}
+
+<section class='p-4 bg-light'>
+    <section>
+        <h1 class='text-secondary text-center text-success'>Bienvenido/a {{user.username}} </h1>
+    </section>
+
+    <h2 class='text-secondary text-center'>Ingrese un producto</h2>
+    <form onsubmit='return false'>
+        <div class='mb-3'>
+            <label class='form-label fw-bold text-secondary fs-3' for='name'>Nombre:</label>
+            <input id='inputTitle' class='form-control' type='text' name='title' required />
+        </div>
+        <div class='mb-3'>
+            <label class='form-label fw-bold text-secondary fs-3' for='price'>Precio:</label>
+            <input id='inputPrice' class='form-control' type='number' name='price' required />
+        </div>
+        <div class='mb-3'>
+            <label class='form-label fw-bold text-secondary fs-3' for='picture'>Foto URL:</label>
+            <input id='inputThumbnail' class='form-control' type='url' name='thumbnail' required />
+        </div>
+        <div class='mb-3'>
+            <button class='btn btn-success d-block mx-auto' onclick='sendProd()'>Enviar</button>
+        </div>
+    </form>
+</section>
+
+{{! LISTADO PRODUCTOS }}
+{{#if productos}}
+    <h1 class='text-secondary text-center'>Listado de productos</h1>
+    <div class='container'>
+        <div class='row'>
+            <div class='col'>
+                <table class='table table-dark table-striped table-hover align-middle'>
+                    <thead>
+                        <tr>
+                            <th class='text-center'>Nombre</th>
+                            <th class='text-center'>Precio</th>
+                            <th class='text-center'>Foto</th>
+                        </tr>
+                    </thead>
+                    <tbody id='productos'>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{{else}}
+    <div>
+        <h1 class='text-secondary text-center'>Listado de productos</h1>
+        <h2 class='text-center'>No hay productos</h2>
+        <div>
+            <a href='/'>
+                <button class='btn btn-success d-block mx-auto'> Agregar producto</button>
+            </a>
+        </div>
+    </div>
+{{/if}}
+
+{{! CENTRO DE MENSAJES }}
+<section class='p-4 bg-light'>
+    <h1 class='text-secondary text-center'>Centro de Mensajes</h1>
+    <form onsubmit='return false'>
+        <input id='input-email' placeholder='diego@outlook.com' />
+        <div id='fullChat'></div>
+        <input id='input-msg' placeholder='Ingresá un mensaje' />
+        <button onclick='sendMsg()'>Enviar!</button>
+    </form>
+</section>

@@ -1,0 +1,13 @@
+<p id='username'>Bienvenido!</p>
+<p> <strong class='capitalize'>{{username}}</strong> </p>
+<img src='https://cdn-icons-png.flaticon.com/128/8832/8832108.png' class='arrow' alt='success!' />
+<h2>Login success! </h2>
+
+{{! <button onclick='redirect()'>Continuar</button> }}
+
+{{! <script>
+    function redirect(){ window.location.href='/privado'; }
+</script> }}
+<script>
+    setTimeout(() => { window.location.href = '/privado'}, 2000);
+</script>

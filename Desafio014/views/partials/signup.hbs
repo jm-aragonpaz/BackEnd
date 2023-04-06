@@ -1,0 +1,33 @@
+<h1>
+    Registro
+</h1>
+<div>
+    <form action='/signup' method='post'>
+        <div>
+            <label for='user'>Por favor ingrese su nombre de usuario y una contraseña</label>
+            <br />
+            <input
+                type='text'
+                id='inputNewUser'
+                name='username'
+                class='form-control'
+                placeholder='email'
+                required
+            />
+            <input
+                type='text'
+                name='password'
+                id='inputNewPass'
+                class='form-control'
+                placeholder='password'
+                required
+            />
+        </div>
+        <br />
+        <input type='submit' class='btn btn-success d-block mx-auto' value='Registrar' />
+    </form>
+    <button type='button' class='btn btn-success'><a
+            href='./login'
+            style='text-decoration: none; color: #ffffff;'
+        >Login</a></button>
+</div>
